@@ -1,3 +1,9 @@
+/* TODO: write some nice stuff
+*
+*
+*
+* */
+
 function mm() {
 	var mm = {};
 	mm.init = function () {
@@ -15,7 +21,12 @@ function mm() {
 		mm.init().then(function (db) {
 			db.get('markers').then(function (doc) {
 				doc.markers[location] = {
-					displayValue: displayValue
+					displayValue: displayValue,
+					date: '', //TODO
+					description: '', //TODO
+					tags: '', //TODO
+					people: '', //TODO
+					photos: '' //TODO
 				};
 				db.put(doc);
 			});
@@ -30,6 +41,14 @@ function mm() {
 				});
 			});
 		});
+	};
+
+	mm.deleteLocation = function(){
+		//TODO: delete locations
+	};
+
+	mm.setLocationDetails = function(){
+		//TODO: set details for marker
 	};
 
 	return mm;
