@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+	<script src="src/mm.js"></script>
+	<script src="src/mmap.js"></script>
+	<script src="main.js"></script>
+</head>
+<body background="/assets/gir2.gif">
+<h1>MEEL MAPS</h1>
+
+<div id="container" class="col-lg-10">
+	<div class="input-group">
+		<input id="ll" type="text" class="form-control" placeholder="Search for...">
+	  <span class="input-group-btn">
+		<button class="btn btn-default" onclick="lookup()" type="button">Go!</button>
+	  </span>
+	</div>
+	<div id="map" class="col-lg-12"></div>
+
+</div>
+
+<ul id="locations"></ul>
+<div id="suggestions"></div>
+
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">How was your day here?</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" class="form-control" placeholder="Date mm/dd/yy">
+				<br>
+				<input type="text" class="form-control" placeholder="This place was so...">
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon" id="tagged">@</span>
+					<input type="text" class="form-control" placeholder="Tag people" aria-describedby="tagged">
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon" id="tags">@</span>
+					<input type="text" class="form-control" placeholder="Tags" aria-describedby="tags">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+	function lookup() {
+		var ll = document.getElementById('ll').value;
+		if (!ll)
+			return;
+
+		document.getElementById('suggestions').innerHTML = '';
+		document.getElementById('container').className = 'col-lg-10';
+		mmap.codeAddress(ll);
+	}
+</script>
+
+<style>
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	#map {
+		height: 100%;
+		border-radius: 4px;
+	}
+
+	.location {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+</body>
+</html>
