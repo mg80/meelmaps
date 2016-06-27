@@ -24,6 +24,7 @@
 		};
 
 		this.mmap.addMarker = function (mark) {
+			document.getElementById('suggestions').innerHTML = '';
 			map.setCenter(mark);
 			var marker = new google.maps.Marker({map: map, position: mark});
 			google.maps.event.addListener(marker, 'click', function () {
